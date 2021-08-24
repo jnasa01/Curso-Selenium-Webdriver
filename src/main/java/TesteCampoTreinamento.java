@@ -31,9 +31,20 @@ public class TesteCampoTreinamento
         //driver.findElement(By.id("elementosForm:sexo:1")).click();
         driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
 
-        driver.findElements(By.id("elementosForm:escolaridade") List("2grauincomp"));
+        //driver.findElements(By.id("elementosForm:escolaridade") List("2grauincomp"));
 
 
+        driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Área de texto derivada para comentários.");
+
+        //driver.quit();
+
+    }
+
+    @Test
+    public void testeTextArea(){
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("file:///" + System.getProperty("user.dir")  + "/src/main/resources/componentes.html");
         driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Área de texto derivada para comentários.");
 
         //driver.quit();
