@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -34,7 +35,6 @@ public class TesteCampoTreinamento
         driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Linha Complementar");
         Assert.assertEquals("Linha Complementar", driver.findElement(By.id("elementosForm:sobrenome")).getAttribute("value"));
 
-
         driver.quit();
 
     }
@@ -47,7 +47,7 @@ public class TesteCampoTreinamento
         driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Área de texto derivada para comentários.\n\nBy Jairo Nascimento");
         Assert.assertEquals("Área de texto derivada para comentários.\n\nBy Jairo Nascimento", driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
 
-        //driver.quit();
+        driver.quit();
 
     }
 
@@ -61,7 +61,6 @@ public class TesteCampoTreinamento
         //Validação com assertEquals e com AssertTrue
 //        Assert.assertEquals("M", driver.findElement(By.id("elementosForm:sexo:0")).getAttribute("value"));
         Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
-
 
 //        driver.findElement(By.id("elementosForm:sexo:1")).click();
 //        //Validação com assertEquals e com AssertTrue
@@ -89,11 +88,55 @@ public class TesteCampoTreinamento
 
         driver.findElement(By.id("elementosForm:comidaFavorita:3")).click();
         //Assert.assertEquals("vegetariano", driver.findElement(By.id("elementosForm:comidaFavorita:3")).getAttribute("value"));
+        Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:3")).isSelected());
 
-        //driver.findElements(By.id("elementosForm:escolaridade") List("2grauincomp")
+        //driver.quit();
+
+    }
+
+
+
+    @Test
+    public void deveInteragirComCombox(){
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("file:///" + System.getProperty("user.dir")  + "/src/main/resources/componentes.html");
+        WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
+        Select combo = new Select(element);
+        //Seleção por Index
+        //combo.selectByIndex(0);
+        //Seleção por Value
+        //combo.selectByValue("doutorado");
+        //Seleção por Visible Text
+        combo.selectByVisibleText("2o grau incompleto");
+        Assert.assertEquals("2o grau incompleto", combo.getFirstSelectedOption().getText());
 
         driver.quit();
 
+    }
+
+    @Test
+    public void deveVerficarvaloresCombox() {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+        WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
+        Select combo = new Select(element);
+        List<WebElement> options = combo.getOptions();
+        //Validando o tamanho da lista
+        //Assert.assertEquals(8, options.size());
+
+        boolean encontrou = false;
+        for (WebElement option: options ) {
+            if (option.getText().equals("Mestrado")) {
+                encontrou = true;
+                break;
+            }
+        }
+            Assert.assertTrue(encontrou);
+
+
+        driver.quit();
     }
 
 }
