@@ -14,9 +14,13 @@ public class TesteCampoTreinamento
     @Test
     public void teste(){
         WebDriver driver = new ChromeDriver();
+        //Maximizando a tela do bronwser
         driver.manage().window().maximize();
+        // Abrindo arquivo componente.html no diretorio de resource do código
         driver.get("file:///" + System.getProperty("user.dir")  + "/src/main/resources/componentes.html");
-        driver.quit();
+
+        //fechando a sessão do brownser
+        //driver.quit();
 
     }
 
@@ -27,14 +31,11 @@ public class TesteCampoTreinamento
         driver.get("file:///" + System.getProperty("user.dir")  + "/src/main/resources/componentes.html");
         driver.findElement(By.id("elementosForm:nome")).sendKeys("Teste Inicial");
         driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Linha Complementar");
-        driver.findElement(By.id("elementosForm:sexo:0")).click();
+        //driver.findElement(By.id("elementosForm:sexo:0")).click();
         //driver.findElement(By.id("elementosForm:sexo:1")).click();
-        driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
+        //driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
 
-        //driver.findElements(By.id("elementosForm:escolaridade") List("2grauincomp"));
-
-
-        driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Área de texto derivada para comentários.");
+        //driver.findElements(By.id("elementosForm:escolaridade") List("2grauincomp")
 
         //driver.quit();
 
